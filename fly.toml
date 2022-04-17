@@ -1,4 +1,4 @@
-# fly.toml file generated for rockspec-stack on 2022-04-16T16:38:14+01:00
+# fly.toml file generated for rockspec-stack on 2022-04-17T22:31:38+01:00
 
 app = "rockspec-stack"
 
