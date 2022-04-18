@@ -4,7 +4,7 @@ import { LoginIcon } from "@heroicons/react/outline";
 export default function Login() {
   return (
     <div className="h-screen w-screen self-center flex flex-row content-center justify-center align-middle m-auto sm:pb-16 pt-6 sm:pt-8">
-      <div className="mx-auto max-w-3xl w-96 sm:min-w-[32rem] md:min-w-[38rem] lg:w-[42rem] px-4 sm:px-6 lg:px-8 relative self-center">
+      <div className="mx-auto max-w-3xl w-full sm:min-w-[31rem] md:min-w-[36rem] md:max-w-2xl lg:min-w-[48rem] px-4 sm:px-6 lg:px-8 relative self-center">
         <div className="relative shadow-xl overflow-hidden py-3 sm:py-5 rounded-lg sm:rounded-2xl lg:py-7">
           <section>
             <img
@@ -15,10 +15,10 @@ export default function Login() {
           </section>
           <section className="mb-2 py-2">
             <div>
-              <h3 className="text-gray-500 text-center mt-4 md:mt-6 text-3xl">
+              <h3 className="text-gray-500 text-center mt-4 md:mt-6 text-2xl md:text-3xl">
                 Sign in to your account
               </h3>
-              <p className="mt-1 text-center text-md text-gray-600">
+              <p className="mt-1 text-center text-sm sm:text-base text-gray-600">
                 Or{" "}
                 <Link
                   to="/join"
