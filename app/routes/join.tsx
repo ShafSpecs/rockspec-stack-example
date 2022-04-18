@@ -3,9 +3,9 @@ import { Link } from "@remix-run/react";
 
 export default function Join() {
   return (
-    <div className="relative sm:pb-16 pt-6 sm:pt-8">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 relative">
-        <div className="relative shadow-xl overflow-hidden py-3 sm:py-5 rounded-lg sm:rounded-2xl lg:py-7">
+    <div className="relative h-screen w-full sm:pb-16 pt-6 sm:pt-8 align-middle">
+      <div className="m-auto max-w-3xl px-4 sm:px-6 lg:px-8 align-middle relative">
+        <div className="relative shadow-xl overflow-hidden py-3 sm:py-5 align-middle rounded-lg sm:rounded-2xl lg:py-7">
           <section>
             <img
               src="/svgs/remix-black.svg"
@@ -13,7 +13,7 @@ export default function Join() {
               className="mx-auto mt-16 w-full max-w-[12rem] md:max-w-[16rem] text-black"
             />
           </section>
-          <section>
+          <section className="mb-2 py-2">
             <h3 className="text-gray-500 text-center mt-4 md:mt-6 text-3xl">
               Create an account
             </h3>
@@ -25,7 +25,7 @@ export default function Join() {
                   Already have an account?
                 </Link>
               </p>
-            <div className="rounded-md shadow-sm -space-y-px px-8 py-5 md:px-12 md:py-8 lg:px-20 lg:py-12">
+            <div className="rounded-md shadow-sm -space-y-px px-8 py-5 md:px-12 md:py-7 lg:px-20 lg:py-10">
               <div>
                 <label htmlFor="email-address" className="sr-only">
                   Email address

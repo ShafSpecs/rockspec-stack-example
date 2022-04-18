@@ -3,8 +3,8 @@ import { LoginIcon } from "@heroicons/react/outline";
 
 export default function Login() {
   return (
-    <div className="relative self-center align-middle m-auto sm:pb-16 pt-6 sm:pt-8">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 relative">
+    <div className="h-screen w-screen self-center flex flex-row content-center justify-center align-middle m-auto sm:pb-16 pt-6 sm:pt-8">
+      <div className="mx-auto max-w-3xl w-96 sm:min-w-[32rem] md:min-w-[38rem] lg:w-[42rem] px-4 sm:px-6 lg:px-8 relative self-center">
         <div className="relative shadow-xl overflow-hidden py-3 sm:py-5 rounded-lg sm:rounded-2xl lg:py-7">
           <section>
             <img
@@ -13,7 +13,7 @@ export default function Login() {
               className="mx-auto mt-16 w-full max-w-[12rem] md:max-w-[16rem] text-black"
             />
           </section>
-          <section className="">
+          <section className="mb-2 py-2">
             <div>
               <h3 className="text-gray-500 text-center mt-4 md:mt-6 text-3xl">
                 Sign in to your account
@@ -28,7 +28,7 @@ export default function Login() {
                 </Link>
               </p>
             </div>
-            <div className="rounded-md shadow-sm -space-y-px px-8 py-5 md:px-12 md:py-8 lg:px-20 lg:py-12">
+            <div className="rounded-md shadow-sm -space-y-px px-8 py-5 md:px-12 md:py-7 lg:px-20 lg:py-10">
               <div>
                 <label htmlFor="email-address" className="sr-only">
                   Email address
@@ -58,7 +58,7 @@ export default function Login() {
                 />
               </div>
             </div>
-            <div className="flex flex-row align-middle justify-center content-center px-8 md:px-12 lg:px-20">
+            <div className="flex flex-row mt-0 align-middle justify-center content-center px-8 md:px-12 lg:px-20">
               <button
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
