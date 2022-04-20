@@ -29,22 +29,28 @@ export default function Notes() {
         </h3>
         <nav className="absolute flex flex-row right-3 md:right-4">
           <Link
+            to="/"
+            className="items-center lg:text-xl hidden xl:flex justify-center border-0 text-blue-500 px-5 py-3 lg:px-6 lg:py-4 font-bold hover:text-blue-600"
+          >
+            Homepage
+          </Link>
+          <Link
             to="/notes"
-            className="items-center lg:text-xl hidden lg:flex justify-center border-0 text-blue-500 px-5 py-3 lg:px-6 lg:py-4 font-bold hover:text-blue-600"
+            className="items-center lg:text-xl hidden xl:flex justify-center border-0 text-blue-500 px-5 py-3 lg:px-6 lg:py-4 font-bold hover:text-blue-600"
           >
             Dashboard
           </Link>
           <Form action="/logout" method="post">
             <button
               type="submit"
-              className="items-center lg:text-lg hidden lg:flex justify-center rounded-md bg-blue-500 px-5 py-3 lg:px-6 lg:py-4 font-medium text-white hover:bg-blue-600"
+              className="items-center lg:text-lg hidden xl:flex justify-center rounded-md bg-blue-500 px-5 py-3 lg:px-6 lg:py-4 font-medium text-white hover:bg-blue-600"
             >
               Log Out
             </button>
           </Form>
           <Menu
             as="div"
-            className="relative z-50 inline-block lg:hidden text-left"
+            className="relative z-50 inline-block xl:hidden text-left"
           >
             <div>
               <Menu.Button className="inline-flex justify-center w-full rounded-full border border-gray-300 shadow-sm p-3 sm:p-4 bg-white text-md font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-400">
@@ -66,6 +72,23 @@ export default function Notes() {
               leaveTo="transform opacity-0 scale-95"
             >
               <Menu.Items className="z-50 origin-top-right absolute right-0 pt-0 pb-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div className="py-1">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link
+                        to="/"
+                        className={classNames(
+                          active
+                            ? "bg-gray-100 text-gray-900"
+                            : "text-gray-700",
+                          "block px-4 py-2 text-sm"
+                        )}
+                      >
+                        Home
+                      </Link>
+                    )}
+                  </Menu.Item>
+                </div>
                 <div className="py-1">
                   <Menu.Item>
                     {({ active }) => (
