@@ -1,13 +1,23 @@
 import { Fragment } from "react";
-import { Link, Outlet } from "@remix-run/react";
+import { Link, Outlet, useLoaderData, Form } from "@remix-run/react";
 import { Menu, Transition } from "@headlessui/react";
 import { MenuAlt3Icon } from "@heroicons/react/outline";
+import { getUserId } from "~/utils/server/session.server";
+import type { LoaderFunction } from "@remix-run/node";
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const userId = await getUserId(request);
+  if (userId) return userId;
+  return { message: "Hello World!" };
+};
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Notes() {
+  const data = useLoaderData();
+  console.log(data);
   return (
     <div>
       <header className="px-3 py-2 relative flex flex-row content-center">
@@ -20,21 +30,26 @@ export default function Notes() {
         <nav className="absolute flex flex-row right-3 md:right-4">
           <Link
             to="/notes"
-            className="items-center lg:text-xl hidden md:flex justify-center border-0 text-blue-500 px-5 py-3 lg:px-6 lg:py-4 font-bold hover:text-blue-600"
+            className="items-center lg:text-xl hidden lg:flex justify-center border-0 text-blue-500 px-5 py-3 lg:px-6 lg:py-4 font-bold hover:text-blue-600"
           >
             Dashboard
           </Link>
-          <Link
-            to="/login"
-            className="items-center lg:text-lg hidden md:flex justify-center rounded-md bg-blue-500 px-5 py-3 lg:px-6 lg:py-4 font-medium text-white hover:bg-blue-600"
+          <Form action="/logout" method="post">
+            <button
+              type="submit"
+              className="items-center lg:text-lg hidden lg:flex justify-center rounded-md bg-blue-500 px-5 py-3 lg:px-6 lg:py-4 font-medium text-white hover:bg-blue-600"
+            >
+              Log Out
+            </button>
+          </Form>
+          <Menu
+            as="div"
+            className="relative z-50 inline-block lg:hidden text-left"
           >
-            Log Out
-          </Link>
-          <Menu as="div" className="relative z-50 inline-block md:hidden text-left">
             <div>
-              <Menu.Button className="inline-flex justify-center w-full rounded-full border border-gray-300 shadow-sm p-3 bg-white text-md font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-400">
+              <Menu.Button className="inline-flex justify-center w-full rounded-full border border-gray-300 shadow-sm p-3 sm:p-4 bg-white text-md font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-400">
                 <MenuAlt3Icon
-                  className="w-4 h-4 text-gray-800"
+                  className="w-4 h-4 sm:w-5 sm:h-5 md:w-7 md:h-7 text-gray-800"
                   aria-hidden="true"
                 />
               </Menu.Button>
@@ -50,7 +65,7 @@ export default function Notes() {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="z-50 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Menu.Items className="z-50 origin-top-right absolute right-0 pt-0 pb-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div className="py-1">
                   <Menu.Item>
                     {({ active }) => (
@@ -69,9 +84,9 @@ export default function Notes() {
                   </Menu.Item>
                 </div>
                 <div className="py-1">
-                  <form method="POST" action="#">
-                    <Menu.Item>
-                      {({ active }) => (
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Form action="/logout" method="post">
                         <button
                           type="submit"
                           className={classNames(
@@ -83,9 +98,9 @@ export default function Notes() {
                         >
                           Sign out
                         </button>
-                      )}
-                    </Menu.Item>
-                  </form>
+                      </Form>
+                    )}
+                  </Menu.Item>
                 </div>
               </Menu.Items>
             </Transition>
