@@ -18,7 +18,7 @@ export default function NoteId() {
           ></textarea>
         </div>
       </section>
-      <section className="relative px-3 sm:px-0 mt-8 sm:mt-10 md:mt-12 lg:mt-14 content-center flex flex-col justify-center max-w-[1024px] m-auto">
+      <section className="relative px-3 sm:px-0 mt-8 sm:mt-10 md:mt-12 lg:mt-14 content-center flex flex-col justify-center max-w-[768px] lg:max-w-[1024px] m-auto">
         <div className="flex flex-row align-middle content-center justify-end w-full">
           <label
             htmlFor="title"
