@@ -218,7 +218,7 @@ export default function Join() {
       {(transition.state == "submitting" || transition.state == "loading") && (
         <div className="absolute bottom-4 md:bottom-7">
           <p className="text-center text-gray-600 text-sm sm:text-base">
-            Check the docs for tips on better Optimistic UI and UX!
+            Check the Remix Docs for tips on better Optimistic UI and UX!
           </p>
         </div>
       )}
