@@ -16,8 +16,6 @@ function classNames(...classes: any) {
 }
 
 export default function Notes() {
-  const data = useLoaderData();
-  console.log(data);
   return (
     <div>
       <header className="px-3 py-2 relative flex flex-row content-center">
@@ -50,7 +48,7 @@ export default function Notes() {
           </Form>
           <Menu
             as="div"
-            className="relative z-50 inline-block xl:hidden text-left"
+            className="relative mobile z-50 inline-block xl:hidden text-left"
           >
             <div>
               <Menu.Button className="inline-flex justify-center w-full rounded-full border border-gray-300 shadow-sm p-3 sm:p-4 bg-white text-md font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-400">
