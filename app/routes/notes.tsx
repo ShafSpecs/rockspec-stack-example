@@ -4,6 +4,7 @@ import { redirect } from "@remix-run/node";
 import { Menu, Transition } from "@headlessui/react";
 import { MenuAlt3Icon } from "@heroicons/react/outline";
 import { getUserId } from "~/utils/server/session.server";
+
 import type { LoaderFunction } from "@remix-run/node";
 
 export const loader: LoaderFunction = async ({ request }) => {
