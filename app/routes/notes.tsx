@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Link, Outlet, useLoaderData, Form } from "@remix-run/react";
+import { redirect } from "@remix-run/node";
 import { Menu, Transition } from "@headlessui/react";
 import { MenuAlt3Icon } from "@heroicons/react/outline";
 import { getUserId } from "~/utils/server/session.server";
@@ -7,8 +8,11 @@ import type { LoaderFunction } from "@remix-run/node";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const userId = await getUserId(request);
-  if (userId) return userId;
-  return { message: "Hello World!" };
+  if (userId) {
+    return userId;
+  } else {
+    return redirect("/login");
+  }
 };
 
 function classNames(...classes: any) {
