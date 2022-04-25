@@ -78,7 +78,7 @@ export const action: ActionFunction = async ({ request }) => {
 
 export const meta: MetaFunction = () => {
   return {
-    title: "Login",
+    title: "Login to RockSpec",
   };
 };
 
