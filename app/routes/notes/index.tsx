@@ -63,12 +63,11 @@ function Note({ title, content, link }: any) {
 
 export default function IndexNotes() {
   const data = useLoaderData() as LoaderData;
-  console.log(data.noteListItems);
 
   return (
     <div>
       <section className="mt-4 sm:mt-7 md:mt-10">
-        {data.noteListItems.length == 0 ? (
+        {data.noteListItems.length == 0 || !data ? (
           <NoNote />
         ) : (
           <ul className="note-list">
