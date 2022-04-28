@@ -9,6 +9,13 @@
     font-display: swap;
     font-weight: 400;
   }
+
+  @font-face {
+    font-family: "Product Sans";
+    src: url("/fonts/ProductSans/Product_Sans.ttf")  format("truetype");
+    font-display: swap;
+    font-weight: 400;
+  }
   
   @font-face {
     font-family: "Anxiety";
