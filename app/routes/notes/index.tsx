@@ -1,13 +1,19 @@
-import { json } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
+import { Link, useFetcher, useLoaderData } from "@remix-run/react";
+import invariant from "tiny-invariant";
 import { PencilIcon, XCircleIcon, ShareIcon } from "@heroicons/react/solid";
 import { BookOpenIcon } from "@heroicons/react/outline";
 import { requireUserId } from "~/utils/server/session.server";
-import { getNoteListItems } from "~/models/notes.server";
+import { deleteNote, getNoteListItems } from "~/models/notes.server";
 
-import type { LinksFunction, LoaderFunction } from "@remix-run/node";
+import type {
+  LinksFunction,
+  LoaderFunction,
+  ActionFunction,
+} from "@remix-run/node";
 
 import notes from "../../styles/notes.css";
-import { Link, useLoaderData } from "@remix-run/react";
+import { useEffect, useRef } from "react";
 
 type LoaderData = {
   noteListItems: Awaited<ReturnType<typeof getNoteListItems>>;
@@ -15,6 +21,16 @@ type LoaderData = {
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: notes }];
+};
+
+export const action: ActionFunction = async ({ request, params }) => {
+  const userId = await requireUserId(request);
+  const formData = await request.formData();
+  const id = formData.get("id") as string;
+  invariant(id, "noteId not found");
+
+  await deleteNote({ userId, id });
+  return redirect("/notes");
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -30,14 +46,23 @@ function NoNote() {
       <h3 className="text-gray-400 text-xl md:text-2xl lg:text-3xl font-bold">
         No notes yet
       </h3>
-      <button className="mt-1 sm:mt-2 lg:mt-3 bg-blue-500 font-semibold text-white border rounded-lg border-transparent py-1 lg:py-[0.325rem] px-1 sm:px-2 lg:px-3">
-        <Link to="/notes/new">+ Create a new note</Link>
-      </button>
+      <Link to="/notes/new">
+        <button className="mt-1 sm:mt-2 lg:mt-3 bg-blue-500 font-semibold text-white border rounded-lg border-transparent py-1 lg:py-[0.325rem] px-1 sm:px-2 lg:px-3">
+          + Create a new note
+        </button>
+      </Link>
     </div>
   );
 }
 
 function Note({ title, content, link }: any) {
+  const fetcher = useFetcher();
+
+  const deleteNote = (id: string): boolean => {
+    fetcher.submit({ mode: "DELETE_NOTE", id: link }, { method: "post" });
+    return false
+  };
+
   return (
     <li className="li m-6 sm:m-8 relative">
       <Link
@@ -53,7 +78,11 @@ function Note({ title, content, link }: any) {
           id="menu"
         >
           <PencilIcon className="w-8 h-8 mr-2 md:mr-4 text-gray-600 hover:text-blue-500" />
-          <XCircleIcon className="w-8 h-8 ml-2 mr-2 md:ml-4 md:mr-4 text-gray-600 hover:text-red-600" />
+          <XCircleIcon
+            id="delete"
+            className="w-8 h-8 ml-2 mr-2 md:ml-4 md:mr-4 text-gray-600 hover:text-red-600"
+            onClick={() => deleteNote(link)}
+          />
           <ShareIcon className="w-8 h-8 ml-2 md:ml-4 text-gray-600 hover:text-green-400" />
         </div>
       </Link>
