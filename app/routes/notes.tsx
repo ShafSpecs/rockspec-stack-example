@@ -3,9 +3,19 @@ import { Link, Outlet, useLoaderData, Form } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
 import { Menu, Transition } from "@headlessui/react";
 import { MenuAlt3Icon } from "@heroicons/react/outline";
-import { getUserId } from "~/utils/server/session.server";
+import { getUserId, requireUserId } from "~/utils/server/session.server";
+import { deleteNote } from "~/models/notes.server";
+import invariant from "tiny-invariant";
 
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction, ActionFunction } from "@remix-run/node";
+
+export const action: ActionFunction = async ({ request, params }) => {
+  const userId = await requireUserId(request);
+  invariant(params.noteId, "noteId not found");
+
+  await deleteNote({ userId, id: params.noteId });
+  return redirect("/notes");
+};
 
 export const loader: LoaderFunction = async ({ request }) => {
   const userId = await getUserId(request);
