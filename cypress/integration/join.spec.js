@@ -10,5 +10,5 @@ describe("Test the Joining function", () => {
     cy.contains("Create account").click();
 
     cy.url().should("include", "/");
-  })
-})
+  });
+});

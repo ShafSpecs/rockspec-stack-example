@@ -6,5 +6,5 @@ describe("Notes route security", () => {
     cy.visit("http://localhost:3000/notes");
 
     cy.url().should("include", "/login");
-  })
-})
+  });
+});
