@@ -182,7 +182,7 @@ export default function Login() {
           </Form>
         </div>
       </div>
-      {(transition.state == "submitting") && (
+      {transition.state == "submitting" && (
         <div className="absolute bottom-10 md:bottom-14 flex flex-row justify-between content-center px-6 py-1 text-sm sm:text-base sm:px-7 sm:py-2 md:px-9 md:py-3 bg-blue-200 rounded-md border border-blue-600">
           <p className="text-left relative top-1 ms:top-2 h-full flex content-center align-middle font-modern-sans text-lg sm:text-xl lg:text-2xl">
             Hacking you in...
@@ -212,7 +212,7 @@ export default function Login() {
         </p> */}
         </div>
       )}
-      {(transition.state == "submitting") && (
+      {transition.state == "submitting" && (
         <div className="absolute bottom-4 md:bottom-7">
           <p className="text-center text-gray-600 text-sm sm:text-base">
             Check the Remix Docs for tips on better Optimistic UI and UX!

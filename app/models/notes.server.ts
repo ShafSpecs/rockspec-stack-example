@@ -15,6 +15,17 @@ export function getNote({
   });
 }
 
+export function getNoteNonUser({
+  id,
+  userId,
+}: Pick<Note, "id"> & {
+  userId: User["id"];
+}) {
+  return prisma.note.findFirst({
+    where: { id },
+  });
+}
+
 export function getNoteListItems({ userId }: { userId: User["id"] }) {
   return prisma.note.findMany({
     where: { userId },
@@ -51,8 +62,8 @@ export function updateNote({
   id: Note["id"];
 }) {
   return prisma.note.update({
-    where: { 
-      id 
+    where: {
+      id,
     },
     data: {
       title,

@@ -4,6 +4,7 @@ import {
   useFetcher,
   useLoaderData,
   useActionData,
+  Link,
 } from "@remix-run/react";
 import { json, redirect } from "@remix-run/node";
 import invariant from "tiny-invariant";
@@ -19,6 +20,8 @@ import {
   ClipboardCopyIcon,
 } from "@heroicons/react/outline";
 import { ShareIcon } from "@heroicons/react/solid";
+import { WebShareLink, copyText } from "~/utils/client/pwa-utils.client";
+import { domain } from "~/utils/client/domain.client";
 
 import type {
   LoaderFunction,
@@ -383,24 +386,26 @@ export default function NoteId() {
                 <div className="py-1">
                   <Menu.Item>
                     {({ active }) => (
-                      <a
-                        href="#"
+                      <div
+                        onClick={() => {
+                          copyText(data.note.body);
+                        }}
                         className={classNames(
                           active
                             ? "bg-gray-100 text-gray-900"
                             : "text-gray-700",
-                          "flex flex-row content-center align-middle justify-start px-4 py-2 text-sm"
+                          "flex flex-row content-center align-middle justify-start px-4 py-2 text-sm hover:cursor-pointer"
                         )}
                       >
                         <ClipboardCopyIcon className="w-4 h-4 md:w-5 md:h-5" />
                         &nbsp;<span className="ml-1">Copy to clipboard</span>
-                      </a>
+                      </div>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
-                      <a
-                        href="#"
+                      <Link
+                        to={`/preview/${data.note.id}`}
                         className={classNames(
                           active
                             ? "bg-gray-100 text-gray-900"
@@ -410,23 +415,25 @@ export default function NoteId() {
                       >
                         <PresentationChartBarIcon className="w-4 h-4 md:w-5 md:h-5" />
                         &nbsp;<span className="ml-1">Preview</span>
-                      </a>
+                      </Link>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
-                      <a
-                        href="#"
+                      <div
+                        onClick={() => {
+                          WebShareLink(`https://${domain}/preview/${data.note.id}`, `${data.note.title}`, "Check my note out!");
+                        }}
                         className={classNames(
                           active
                             ? "bg-gray-100 text-gray-900"
                             : "text-gray-700",
-                          "flex flex-row content-center align-middle justify-start px-4 py-2 text-sm"
+                          "flex flex-row content-center align-middle justify-start px-4 py-2 text-sm hover:cursor-pointer"
                         )}
                       >
                         <ShareIcon className="w-4 h-4 md:w-5 md:h-5" />
                         &nbsp;<span className="ml-1">Share</span>
-                      </a>
+                      </div>
                     )}
                   </Menu.Item>
                 </div>

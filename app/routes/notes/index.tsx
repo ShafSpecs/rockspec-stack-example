@@ -13,7 +13,6 @@ import type {
 } from "@remix-run/node";
 
 import notes from "../../styles/notes.css";
-import { useEffect, useRef } from "react";
 
 type LoaderData = {
   noteListItems: Awaited<ReturnType<typeof getNoteListItems>>;
@@ -60,7 +59,7 @@ function Note({ title, content, link }: any) {
 
   const deleteNote = (id: string): boolean => {
     fetcher.submit({ mode: "DELETE_NOTE", id: link }, { method: "post" });
-    return false
+    return false;
   };
 
   return (
@@ -83,7 +82,7 @@ function Note({ title, content, link }: any) {
             className="w-8 h-8 ml-2 mr-2 md:ml-4 md:mr-4 text-gray-600 hover:text-red-600"
             onClick={() => deleteNote(link)}
           />
-          <ShareIcon className="w-8 h-8 ml-2 md:ml-4 text-gray-600 hover:text-green-400" />
+          {/* <ShareIcon className="w-8 h-8 ml-2 md:ml-4 text-gray-600 hover:text-green-400" onClick={shareNote}/> */}
         </div>
       </Link>
     </li>
@@ -95,6 +94,11 @@ export default function IndexNotes() {
 
   return (
     <div>
+      <section>
+        <button>
+          New Note
+        </button>
+      </section>
       <section className="mt-4 sm:mt-7 md:mt-10">
         {data.noteListItems.length == 0 || !data ? (
           <NoNote />
