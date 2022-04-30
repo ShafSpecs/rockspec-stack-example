@@ -7,7 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLocation,
-  useMatches
+  useMatches,
 } from "@remix-run/react";
 
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
@@ -21,10 +21,8 @@ export const meta: MetaFunction = () => ({
 });
 
 export const links: LinksFunction = () => {
-  return [
-    { rel: "stylesheet", href: tailwind }
-  ]
-}
+  return [{ rel: "stylesheet", href: tailwind }];
+};
 
 export default function App() {
   let location = useLocation();
@@ -66,9 +64,9 @@ export default function App() {
   }, [location]);
 
   return (
-    <html lang="en"> 
-      <head>  
-        <Meta /> 
+    <html lang="en">
+      <head>
+        <Meta />
         <link
           rel="apple-touch-icon"
           sizes="57x57"
@@ -139,14 +137,14 @@ export default function App() {
           href="/icons/favicon-16x16.png"
         />
         <link rel="manifest" href="/resources/manifest.json" />
-        <Links /> 
-      </head> 
-      <body>
-        <Outlet /> 
-        <ScrollRestoration /> 
-        <Scripts /> 
-        <LiveReload /> 
-      </body> 
+        <Links />
+      </head>
+      <body className="m-0 p-0 h-screen">
+        <Outlet />
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+      </body>
     </html>
   );
 }
