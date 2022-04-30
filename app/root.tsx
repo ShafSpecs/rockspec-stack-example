@@ -18,6 +18,26 @@ export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "RockSpec Stack",
   viewport: "width=device-width,initial-scale=1",
+  keywords: "Remix,ShafSpecs,Fashola,Abdur-Rahman,RockSpec,Stack,Remix Stacks,Remix React,Fly,Postgres",
+  "twitter:image":
+    "/images/rockspec-image.png",
+  "og:image":
+    "/images/rockspec-image.png",
+  "twitter:card": "summary_large_image",
+  "og:title": "RockSpec Stack",
+  "og:type": "website",
+  "og:url": "https://rockspec-stack.fly.dev",
+  "og:locale": "en_US",
+  "og:image:alt": "RockSpec Stack",
+  "og:image:width": "1200",
+  "og:image:height": "630",
+  "og:image:type": "image/png",
+  "og:image:secure_url":
+    "/images/rockspec-image.png",
+  "og:image:url":
+    "/images/rockspec-image.png",
+  "og:description":
+    "Deployed to a long-running Node.js server with a persistent PostgreSQL database. This stack is great for websites with dynamic data that you control (blogs, marketing, content sites) with native capabilities (PWA). It can be scaled easily to serve millions of users an is also a perfect, low-complexity bootstrap for MVPs, prototypes, and proof-of-concepts.",
 });
 
 export const links: LinksFunction = () => {
