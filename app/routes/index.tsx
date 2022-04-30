@@ -153,7 +153,7 @@ export default function Index() {
           ))}
         </div>
       </div>
-      <section className="md:absolute relative top-4 pb-2 md:mb-0 md:bottom-2 w-full text-center">
+      <section className="md:absolute relative pb-3 mb-2 mt-2 md:mt-0 md:mb-0 md:bottom-2 w-full text-center">
         Crafted by ShafSpecs with ❤️ and Remix vibes 💿
       </section>
     </div>
